@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bedrock Packs Hub</title>
 
-<!-- ICON -->
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/5968/5968350.png">
 
 <style>
@@ -99,21 +98,42 @@ button:hover {
 <div class="grid" id="grid"></div>
 
 <script>
-// REAL WORKING FILE (REPLACE THIS WITH YOUR OWN FILE LATER)
-const WORKING_LINK = "https://download1592.mediafire.com/examplefile/pack.mcpack";
 
-// GENERATE 50+ PACKS
-const packs = [];
-for (let i = 1; i <= 60; i++) {
+// 🔥 IMPORTANT:
+// Upload your file to the SAME repo as this HTML
+// Rename it to something simple like:
+// SmallSword.mcpack
+
+const packs = [
+  {
+    name: "Small Swords PvP Pack",
+    desc: "Better PvP visibility with smaller swords",
+    img: "https://picsum.photos/300/150?1",
+    link: "./SmallSword.mcpack"
+  }
+];
+
+// duplicate to make site look full (same file for now)
+while (packs.length < 50) {
   packs.push({
-    name: "PvP Pack " + i,
-    desc: "Smooth FPS + clean PvP visuals",
-    img: "https://picsum.photos/300/150?random=" + i,
-    link: WORKING_LINK
+    name: packs[0].name + " v" + packs.length,
+    desc: packs[0].desc,
+    img: "https://picsum.photos/300/150?" + packs.length,
+    link: packs[0].link
   });
 }
 
-// DISPLAY
+// FORCE DOWNLOAD
+function downloadFile(url) {
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+// RENDER
 function render(list) {
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
@@ -126,22 +146,19 @@ function render(list) {
       <img src="${p.img}">
       <div class="name">${p.name}</div>
       <div class="desc">${p.desc}</div>
-      <a href="${p.link}" download>
-        <button>Download</button>
-      </a>
+      <button onclick="downloadFile('${p.link}')">Download</button>
     `;
 
     grid.appendChild(div);
   });
 }
 
-// SEARCH (FORCED WORKING)
-document.getElementById("searchInput").addEventListener("keyup", function() {
+// SEARCH
+document.getElementById("searchInput").addEventListener("input", function() {
   const val = this.value.toLowerCase();
 
   const filtered = packs.filter(p =>
-    p.name.toLowerCase().includes(val) ||
-    p.desc.toLowerCase().includes(val)
+    p.name.toLowerCase().includes(val)
   );
 
   render(filtered);
@@ -149,6 +166,7 @@ document.getElementById("searchInput").addEventListener("keyup", function() {
 
 // LOAD
 render(packs);
+
 </script>
 
 </body>
