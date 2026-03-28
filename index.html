@@ -1,62 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Minecraft PvP Packs</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minecraft PvP Texture Packs</title>
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7993677518832326"
+crossorigin="anonymous"></script>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   background: #0f172a;
   color: white;
 }
 
-nav {
+header {
   background: #1e293b;
-  padding: 12px;
+  padding: 15px;
   text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: #020617;
+  padding: 10px;
 }
 
 nav a {
   color: white;
-  margin: 0 12px;
   text-decoration: none;
-  font-weight: bold;
 }
 
-header {
-  text-align: center;
-  padding: 30px 20px;
-}
-
-header p {
-  color: #ccc;
-  max-width: 600px;
-  margin: auto;
-}
-
-.search {
+.search-box {
   text-align: center;
   margin: 20px;
 }
 
 input {
   padding: 10px;
-  width: 80%;
-  max-width: 400px;
+  width: 60%;
   border-radius: 8px;
   border: none;
 }
 
-.categories {
+.filters {
   text-align: center;
-  margin: 20px;
+  margin-bottom: 20px;
 }
 
-.categories button {
+.filters button {
   margin: 5px;
-  padding: 8px 12px;
+  padding: 8px 15px;
   border: none;
   border-radius: 6px;
   background: #334155;
@@ -64,9 +65,13 @@ input {
   cursor: pointer;
 }
 
-.grid {
+.filters button:hover {
+  background: #475569;
+}
+
+.container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 15px;
   padding: 20px;
 }
@@ -74,7 +79,7 @@ input {
 .card {
   background: #1e293b;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .card h3 {
@@ -82,140 +87,112 @@ input {
 }
 
 .card p {
-  color: #aaa;
   font-size: 14px;
+  color: #cbd5f5;
 }
 
-.card a {
-  display: inline-block;
+.download {
   margin-top: 10px;
-  padding: 6px 10px;
+  display: block;
+  text-align: center;
   background: #22c55e;
-  color: black;
+  padding: 10px;
+  border-radius: 8px;
   text-decoration: none;
-  border-radius: 5px;
-  font-size: 14px;
+  color: white;
+}
+
+.download:hover {
+  background: #16a34a;
 }
 
 footer {
   text-align: center;
   padding: 20px;
   background: #020617;
-  color: #aaa;
+  margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
 
+<header>🔥 Best Minecraft Bedrock PvP Texture Packs</header>
+
 <nav>
-<a href="#">Home</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="privacy.html">Privacy</a>
+  <a href="#">Home</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="privacy.html">Privacy</a>
 </nav>
 
-<header>
-<h1>Best Minecraft Bedrock PvP Texture Packs</h1>
-<p>
-Find the best Minecraft PvP packs including FPS boost packs, crystal PvP packs,
-and Bedwars packs. Improve your gameplay with optimized textures and cleaner visuals.
-</p>
-</header>
-
-<div class="search">
-<input type="text" id="search" placeholder="Search packs..." onkeyup="searchPacks()">
+<div class="search-box">
+  <input type="text" id="search" placeholder="Search packs...">
 </div>
 
-<div class="categories">
-<button onclick="filterCategory('all')">All</button>
-<button onclick="filterCategory('fps')">FPS Boost</button>
-<button onclick="filterCategory('crystal')">Crystal PvP</button>
-<button onclick="filterCategory('bedwars')">Bedwars</button>
+<div class="filters">
+  <button onclick="filter('all')">All</button>
+  <button onclick="filter('fps')">FPS</button>
+  <button onclick="filter('crystal')">Crystal</button>
+  <button onclick="filter('bedwars')">Bedwars</button>
 </div>
 
-<div class="grid" id="packList"></div>
+<div class="container" id="packs"></div>
 
 <footer>
-© 2026 Minecraft PvP Packs
+  © 2026 Minecraft PvP Packs | Not affiliated with Mojang
 </footer>
 
 <script>
 const packs = [
-  {name:"Nebula 16x",cat:"fps"},
-  {name:"Aether 32x",cat:"fps"},
-  {name:"Midnight PvP",cat:"crystal"},
-  {name:"Inferno 16x",cat:"bedwars"},
-  {name:"Frostbite 16x",cat:"fps"},
-  {name:"Crimson Pack",cat:"crystal"},
-  {name:"Shadow 32x",cat:"bedwars"},
-  {name:"Velocity Pack",cat:"fps"},
-  {name:"Galaxy 16x",cat:"crystal"},
-  {name:"Phantom PvP",cat:"bedwars"},
-  {name:"Nova 32x",cat:"fps"},
-  {name:"Storm Pack",cat:"crystal"},
-  {name:"Blaze 16x",cat:"bedwars"},
-  {name:"Aqua PvP",cat:"fps"},
-  {name:"Obsidian Pack",cat:"crystal"},
-  {name:"Echo 16x",cat:"bedwars"},
-  {name:"Solar Pack",cat:"fps"},
-  {name:"Venom PvP",cat:"crystal"},
-  {name:"Titan 32x",cat:"bedwars"},
-  {name:"Ghost Pack",cat:"fps"},
-  {name:"Horizon 16x",cat:"crystal"},
-  {name:"Rift Pack",cat:"bedwars"},
-  {name:"Lunar 32x",cat:"fps"},
-  {name:"Zenith PvP",cat:"crystal"},
-  {name:"Pulse Pack",cat:"bedwars"},
-  {name:"Spectral 16x",cat:"fps"},
-  {name:"Void PvP",cat:"crystal"},
-  {name:"Drift Pack",cat:"bedwars"},
-  {name:"Hyper 32x",cat:"fps"},
-  {name:"Flare PvP",cat:"crystal"},
-  {name:"Orbit Pack",cat:"bedwars"},
-  {name:"Neon 16x",cat:"fps"},
-  {name:"Alpha PvP",cat:"crystal"},
-  {name:"Omega Pack",cat:"bedwars"},
-  {name:"Swift 32x",cat:"fps"},
-  {name:"Core PvP",cat:"crystal"},
-  {name:"Delta Pack",cat:"bedwars"},
-  {name:"Matrix 16x",cat:"fps"},
-  {name:"Vortex PvP",cat:"crystal"},
-  {name:"Fusion Pack",cat:"bedwars"}
+  {name:"Nebula 16x", type:"fps", link:"#"},
+  {name:"Aether 32x", type:"crystal", link:"#"},
+  {name:"Midnight PvP", type:"fps", link:"#"},
+  {name:"Inferno 16x", type:"bedwars", link:"#"},
+  {name:"Venom Pack", type:"crystal", link:"#"},
+  {name:"Galaxy 32x", type:"fps", link:"#"},
+  {name:"Ruby PvP", type:"bedwars", link:"#"},
+  {name:"Shadow 16x", type:"fps", link:"#"},
+  {name:"Aqua 32x", type:"crystal", link:"#"},
+  {name:"Blaze Pack", type:"bedwars", link:"#"},
+  {name:"Frost 16x", type:"fps", link:"#"},
+  {name:"Nova Pack", type:"crystal", link:"#"},
+  {name:"Lunar 32x", type:"fps", link:"#"},
+  {name:"Solar Pack", type:"bedwars", link:"#"},
+  {name:"Obsidian PvP", type:"crystal", link:"#"},
+  {name:"Storm Pack", type:"fps", link:"#"},
+  {name:"Dragon 16x", type:"bedwars", link:"#"},
+  {name:"Phantom Pack", type:"crystal", link:"#"},
+  {name:"Titan 32x", type:"fps", link:"#"},
+  {name:"Ice PvP", type:"bedwars", link:"#"}
 ];
 
-let currentCategory = "all";
+function display(list) {
+  const container = document.getElementById("packs");
+  container.innerHTML = "";
 
-function displayPacks() {
-  const list = document.getElementById("packList");
-  const search = document.getElementById("search").value.toLowerCase();
-  list.innerHTML = "";
-
-  packs.forEach(p => {
-    if ((currentCategory === "all" || p.cat === currentCategory) &&
-        p.name.toLowerCase().includes(search)) {
-
-      list.innerHTML += `
-        <div class="card">
-          <h3>${p.name}</h3>
-          <p>Category: ${p.cat}</p>
-          <a href="#">Download</a>
-        </div>
-      `;
-    }
+  list.forEach(pack => {
+    container.innerHTML += `
+      <div class="card">
+        <h3>${pack.name}</h3>
+        <p>${pack.type.toUpperCase()} Pack</p>
+        <a class="download" href="${pack.link}" target="_blank">Download</a>
+      </div>
+    `;
   });
 }
 
-function searchPacks() {
-  displayPacks();
+function filter(type) {
+  if (type === "all") return display(packs);
+  display(packs.filter(p => p.type === type));
 }
 
-function filterCategory(cat) {
-  currentCategory = cat;
-  displayPacks();
-}
+document.getElementById("search").addEventListener("input", e => {
+  const value = e.target.value.toLowerCase();
+  display(packs.filter(p => p.name.toLowerCase().includes(value)));
+});
 
-displayPacks();
+display(packs);
 </script>
 
 </body>
