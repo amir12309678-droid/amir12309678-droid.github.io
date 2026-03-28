@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Minecraft PvP Packs</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
+
+nav {
+  background: #1e293b;
+  padding: 12px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+header p {
+  color: #ccc;
+  max-width: 600px;
+  margin: auto;
+}
+
+.search {
+  text-align: center;
+  margin: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 8px;
+  border: none;
+}
+
+.categories {
+  text-align: center;
+  margin: 20px;
+}
+
+.categories button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #334155;
+  color: white;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.card h3 {
+  margin: 0;
+}
+
+.card p {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 10px;
+  background: #22c55e;
+  color: black;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #020617;
+  color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#">Home</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+</nav>
+
+<header>
+<h1>Best Minecraft Bedrock PvP Texture Packs</h1>
+<p>
+Find the best Minecraft PvP packs including FPS boost packs, crystal PvP packs,
+and Bedwars packs. Improve your gameplay with optimized textures and cleaner visuals.
+</p>
+</header>
+
+<div class="search">
+<input type="text" id="search" placeholder="Search packs..." onkeyup="searchPacks()">
+</div>
+
+<div class="categories">
+<button onclick="filterCategory('all')">All</button>
+<button onclick="filterCategory('fps')">FPS Boost</button>
+<button onclick="filterCategory('crystal')">Crystal PvP</button>
+<button onclick="filterCategory('bedwars')">Bedwars</button>
+</div>
+
+<div class="grid" id="packList"></div>
+
+<footer>
+© 2026 Minecraft PvP Packs
+</footer>
+
+<script>
+const packs = [
+  {name:"Nebula 16x",cat:"fps"},
+  {name:"Aether 32x",cat:"fps"},
+  {name:"Midnight PvP",cat:"crystal"},
+  {name:"Inferno 16x",cat:"bedwars"},
+  {name:"Frostbite 16x",cat:"fps"},
+  {name:"Crimson Pack",cat:"crystal"},
+  {name:"Shadow 32x",cat:"bedwars"},
+  {name:"Velocity Pack",cat:"fps"},
+  {name:"Galaxy 16x",cat:"crystal"},
+  {name:"Phantom PvP",cat:"bedwars"},
+  {name:"Nova 32x",cat:"fps"},
+  {name:"Storm Pack",cat:"crystal"},
+  {name:"Blaze 16x",cat:"bedwars"},
+  {name:"Aqua PvP",cat:"fps"},
+  {name:"Obsidian Pack",cat:"crystal"},
+  {name:"Echo 16x",cat:"bedwars"},
+  {name:"Solar Pack",cat:"fps"},
+  {name:"Venom PvP",cat:"crystal"},
+  {name:"Titan 32x",cat:"bedwars"},
+  {name:"Ghost Pack",cat:"fps"},
+  {name:"Horizon 16x",cat:"crystal"},
+  {name:"Rift Pack",cat:"bedwars"},
+  {name:"Lunar 32x",cat:"fps"},
+  {name:"Zenith PvP",cat:"crystal"},
+  {name:"Pulse Pack",cat:"bedwars"},
+  {name:"Spectral 16x",cat:"fps"},
+  {name:"Void PvP",cat:"crystal"},
+  {name:"Drift Pack",cat:"bedwars"},
+  {name:"Hyper 32x",cat:"fps"},
+  {name:"Flare PvP",cat:"crystal"},
+  {name:"Orbit Pack",cat:"bedwars"},
+  {name:"Neon 16x",cat:"fps"},
+  {name:"Alpha PvP",cat:"crystal"},
+  {name:"Omega Pack",cat:"bedwars"},
+  {name:"Swift 32x",cat:"fps"},
+  {name:"Core PvP",cat:"crystal"},
+  {name:"Delta Pack",cat:"bedwars"},
+  {name:"Matrix 16x",cat:"fps"},
+  {name:"Vortex PvP",cat:"crystal"},
+  {name:"Fusion Pack",cat:"bedwars"}
+];
+
+let currentCategory = "all";
+
+function displayPacks() {
+  const list = document.getElementById("packList");
+  const search = document.getElementById("search").value.toLowerCase();
+  list.innerHTML = "";
+
+  packs.forEach(p => {
+    if ((currentCategory === "all" || p.cat === currentCategory) &&
+        p.name.toLowerCase().includes(search)) {
+
+      list.innerHTML += `
+        <div class="card">
+          <h3>${p.name}</h3>
+          <p>Category: ${p.cat}</p>
+          <a href="#">Download</a>
+        </div>
+      `;
+    }
+  });
+}
+
+function searchPacks() {
+  displayPacks();
+}
+
+function filterCategory(cat) {
+  currentCategory = cat;
+  displayPacks();
+}
+
+displayPacks();
+</script>
+
+</body>
+</html>
